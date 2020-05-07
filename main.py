@@ -10,25 +10,25 @@ class InstaLiker:
         self.like_button_set  = set()
         self.driver = webdriver.Chrome()
 
-    def open_instagram(self):
+    def _open_instagram(self):
         self.driver.get("https://instagram.com")
         sleep(2)
 
-    def enter_login_credentials(self):
+    def _enter_login_credentials(self):
         self.driver.find_element_by_xpath("//input[@name=\"username\"]").send_keys(self.username)
         sleep(2)
         self.driver.find_element_by_xpath("//input[@name=\"password\"]").send_keys(self.password)
         sleep(2)
 
-    def press_login(self):
+    def _press_login(self):
         self.driver.find_element_by_xpath("//*[@id=\"react-root\"]/section/main/article/div[2]/div[1]/div/form/div[4]/button").click()
         sleep(5)
 
-    def shut_down_notification_pop_up(self):
+    def _shut_down_notification_pop_up(self):
         self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[3]/button[2]").click()
         sleep(2)
 
-    def like(self):
+    def _like(self):
         while(True):
             buttons = self.driver.find_elements_by_xpath(" //button[normalize-space(@class)='wpO6b']/*[name()='svg']")
             sleep(3)
@@ -43,11 +43,11 @@ class InstaLiker:
                     self.like_button_set.add(new_like_button)
 
     def run(self):
-        self.open_instagram()
-        self.enter_login_credentials()
-        self.press_login()
-        self.shut_down_notification_pop_up()
-        self.like()
+        self._open_instagram()
+        self._enter_login_credentials()
+        self._press_login()
+        self._shut_down_notification_pop_up()
+        self._like()
 
-instaliker = InstaLiker("user name here", "password here")
+instaliker = InstaLiker("Your name here", "Your password here")
 instaliker.run()
