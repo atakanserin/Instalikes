@@ -1,6 +1,7 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
+import random
 
 
 class InstaLiker:
@@ -31,14 +32,14 @@ class InstaLiker:
     def _like(self):
         while(True):
             buttons = self.driver.find_elements_by_xpath(" //button[normalize-space(@class)='wpO6b']/*[name()='svg']")
-            sleep(3)
+            sleep(random.randint(3,10))
             for button in buttons:
                 if button.get_attribute('aria-label') == "Like" and button not in self.like_button_set:
-                    sleep(3)
+                    sleep(random.randint(3,10))
                     new_like_button = button
                     actions = ActionChains(self.driver)
                     actions.move_to_element(new_like_button).perform()
-                    sleep(3)
+                    sleep(random.randint(3,10))
                     new_like_button.click()
                     self.like_button_set.add(new_like_button)
 
@@ -49,5 +50,5 @@ class InstaLiker:
         self._shut_down_notification_pop_up()
         self._like()
 
-instaliker = InstaLiker("Your name here", "Your password here")
+instaliker = InstaLiker("your instagram username here", "your instagram password here")
 instaliker.run()
