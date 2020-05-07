@@ -28,10 +28,6 @@ class InstaLiker:
         self.driver.find_element_by_xpath("/html/body/div[4]/div/div/div[3]/button[2]").click()
         sleep(2)
 
-    def _scroll(self):
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(5)
-
     def like(self):
         while(True):
             buttons = self.driver.find_elements_by_xpath(" //button[normalize-space(@class)='wpO6b']/*[name()='svg']")
